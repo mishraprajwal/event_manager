@@ -1,11 +1,11 @@
 ## Issues
 
-[Issue 1](https://github.com/mishraprajwal/event_manager/issues/1)  
-[Issue 2](https://github.com/mishraprajwal/event_manager/issues/2)  
-[Issue 3](https://github.com/mishraprajwal/event_manager/issues/3)  
-[Issue 4](https://github.com/mishraprajwal/event_manager/issues/4)  
-[Issue 5](https://github.com/mishraprajwal/event_manager/issues/5)  
-[Issue 6](https://github.com/mishraprajwal/event_manager/issues/6)  
+[Issue 1 - Change bio](https://github.com/mishraprajwal/event_manager/issues/1)  
+[Issue 2 - Change profile_picture_URL](https://github.com/mishraprajwal/event_manager/issues/2)  
+[Issue 3 - Fix HTTP response for create](https://github.com/mishraprajwal/event_manager/issues/3)  
+[Issue 4 - Fix HTTP response for delete](https://github.com/mishraprajwal/event_manager/issues/4)  
+[Issue 5 - Enhance validators for username, password](https://github.com/mishraprajwal/event_manager/issues/5)  
+[Issue 6 - Fix & Add test cases](https://github.com/mishraprajwal/event_manager/issues/6)  
 
 ## Coverage Screenshot
 
