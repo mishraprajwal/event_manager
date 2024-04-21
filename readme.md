@@ -11,6 +11,12 @@
 
 ![URL_to_image](https://github.com/mishraprajwal/event_manager/blob/main/screenshots/Coverage.png)
 
+## Docker Screenshot
+
+![URL_to_image](https://github.com/mishraprajwal/event_manager/blob/main/screenshots/Docker.png)
+
+![URL_to_image](https://github.com/mishraprajwal/event_manager/blob/main/screenshots/Published%20Image.png)
+
 ## Reflections on My Experience with REST API Development
 
 ### Introduction
