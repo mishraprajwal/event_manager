@@ -9,7 +9,7 @@
 
 ## Coverage Screenshot
 
-(![URL_to_image](https://github.com/mishraprajwal/event_manager/blob/main/screenshots/Coverage.png) "Optional title")
+![URL_to_image](https://github.com/mishraprajwal/event_manager/blob/main/screenshots/Coverage.png)
 
 ## Reflections on My Experience with REST API Development
 
