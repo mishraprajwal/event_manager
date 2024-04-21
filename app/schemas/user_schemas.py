@@ -56,6 +56,8 @@ class UserBase(BaseModel):
     )
     email: EmailStr = Field(
         ...,
+        min_length=8,
+        max_length=128,
         description="The email address of the user.",
         example="john.doe@example.com"
     )
@@ -82,12 +84,27 @@ class UserBase(BaseModel):
     def validate_username(cls, v):
         if not re.match(r"^[a-zA-Z0-9_-]+$", v):
             raise ValueError("Username can only contain letters, numbers, underscores, and hyphens.")
+        if not 3 <= len(v) <= 50:
+            raise ValueError("Username must be between 3 and 50 characters long.")
         return v
 
     @validator('full_name')
     def validate_full_name(cls, v):
+        if v and len(v) > 100:
+            raise ValueError("Full name cannot be greater than 100 characters long.")
         if v and not re.match(r"^[a-zA-Z\s'-]+$", v):
             raise ValueError("Full name can only contain letters, spaces, hyphens, or apostrophes.")
+        return v
+    
+    @validator('email')
+    def validate_email(cls, v):
+        # Explicit check for the "@" symbol
+        if '@' not in v:
+            raise ValueError("Email address must contain an '@' symbol.")
+        if len(v) > 128:
+            raise ValueError("Email address cannot be greater than 128 characters long.")
+        if len(v) < 8:
+            raise ValueError("Email address must be at least 8 characters long.")
         return v
 
     @validator('profile_picture_url', pre=True, always=True)
@@ -97,6 +114,8 @@ class UserBase(BaseModel):
         parsed_url = urlparse(v)
         if not re.search(r"\.(jpg|jpeg|png)$", parsed_url.path):
             raise ValueError("Profile picture URL must point to a valid image file (JPEG, PNG).")
+        if not v.startswith('https://'):
+            raise ValueError("Profile picture URL must start with 'https://' for security reasons.")
         return v
 
     class Config:
@@ -151,6 +170,8 @@ class UserCreate(UserBase):
 class UserUpdate(BaseModel):
     email: Optional[EmailStr] = Field(
         None,
+        min_length=8,
+        max_length=128,
         description="A new email address for the user.",
         example="john.doe.new@example.com"
     )
@@ -172,12 +193,34 @@ class UserUpdate(BaseModel):
         example="https://example.com/profile_pictures/john_doe_updated.jpg"
     )
 
+    @validator('full_name')
+    def validate_full_name(cls, v):
+        if v and len(v) > 100:
+            raise ValueError("Full name cannot be greater than 100 characters long.")
+        if v and not re.match(r"^[a-zA-Z\s'-]+$", v):
+            raise ValueError("Full name can only contain letters, spaces, hyphens, or apostrophes.")
+        return v
+    
+    @validator('email')
+    def validate_email(cls, v):
+        # Explicit check for the "@" symbol
+        if '@' not in v:
+            raise ValueError("Email address must contain an '@' symbol.")
+        if len(v) > 128:
+            raise ValueError("Email address cannot be greater than 128 characters long.")
+        if len(v) < 8:
+            raise ValueError("Email address must be at least 8 characters long.")
+        return v
+
     @validator('profile_picture_url', pre=True, always=True)
     def validate_profile_picture_url(cls, v):
-        if v is not None:
-            parsed_url = urlparse(str(v))  # Convert the URL object to a string before parsing
-            if not re.search(r"\.(jpg|jpeg|png)$", parsed_url.path):
-                raise ValueError("Profile picture URL must point to a valid image file (JPEG, PNG).")
+        if v is None:
+            return v  # If the URL is optional, allow None values
+        parsed_url = urlparse(v)
+        if not re.search(r"\.(jpg|jpeg|png)$", parsed_url.path):
+            raise ValueError("Profile picture URL must point to a valid image file (JPEG, PNG).")
+        if not v.startswith('https://'):
+            raise ValueError("Profile picture URL must start with 'https://' for security reasons.")
         return v
 
     class Config:
