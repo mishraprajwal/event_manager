@@ -7,6 +7,10 @@
 [Issue 5](https://github.com/mishraprajwal/event_manager/issues/5)  
 [Issue 6](https://github.com/mishraprajwal/event_manager/issues/6)  
 
+## Coverage Screenshot
+
+(![URL_to_image](https://github.com/mishraprajwal/event_manager/blob/main/screenshots/Coverage.png) "Optional title")
+
 ## Reflections on My Experience with REST API Development
 
 ### Introduction
